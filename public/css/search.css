@@ -1,0 +1,85 @@
+.search {
+    margin-top: 150px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,600);
+#scale-slider.ui-slider {
+  	border-radius: 0px;
+  	background: #c7cdd5;
+  	border: none;
+  	height: 2px;
+  	margin: 1em 4em 4em; }
+  
+  #scale-slider.ui-slider .ui-slider-range {
+    /*background: linear-gradient(right, #434d5a 0%, #00c7d7 50%, #434d5a 100%)*/
+    background: #b771cc;
+    border: 1px solid rgba(67, 77, 90, 0.5);
+    height: 4px;
+    top: -1px;
+    transition: all 0.2s ease-out; }
+                    
+#scale-slider .ui-slider-handle {
+  	border-radius: 2px;
+  	height: 20px;
+  	width: 12px;
+  	top: -26px;
+  	border: none; }
+  
+#scale-slider .ui-slider-handle:nth-of-type(n+1) {
+    transform: rotateZ(-10deg);
+    margin-left: -9px; }
+  
+#scale-slider .ui-slider-handle:nth-of-type(n+2) {
+	transform: rotateZ(10deg);
+	margin-left: -3px; }
+
+#scale-slider .ui-slider-handle:after {
+	content: "";
+	border: 6px solid transparent;
+	width: 0;
+	height: 0;
+	position: absolute;
+	bottom: -11px;
+	border-top-color: #434d5a; }
+
+#scale-slider .ui-slider-handle.ui-slider-handle.ui-state-focus:after,
+#scale-slider .ui-slider-handle.ui-slider-handle.ui-state-hover:after,
+#scale-slider .ui-slider-handle.ui-slider-handle.ui-state-active:after {
+	border-top-color: #00c7d7; }
+                
+#scale-slider .ui-slider-pip {
+	top: 2px; }
+
+#scale-slider .ui-slider-pip .ui-slider-label {
+	display: none;
+	background: rgba(67, 77, 90, 0);
+	color: #434d5a;
+	border-radius: 4px;
+	padding: 0.3em 0;
+	width: 2.4em;
+	margin-left: -1.2em;
+	transition: all 0.2s ease-out; }
+
+#scale-slider .ui-slider-pip .ui-slider-line {
+	height: 4px; }
+
+#scale-slider .ui-slider-pip:nth-of-type(5n+3) .ui-slider-line {
+	height: 8px; }
+
+#scale-slider .ui-slider-pip:nth-of-type(10n+3) .ui-slider-line {
+	height: 12px; }
+
+#scale-slider .ui-slider-pip:nth-of-type(10n+3) .ui-slider-label {
+	top: 16px;
+	display: block; }
+
+#scale-slider .ui-slider-pip.ui-slider-pip-last .ui-slider-line {
+	margin-left: -1px; }
+
+#scale-slider .ui-slider-pip.ui-slider-pip-selected .ui-slider-label, 
+#scale-slider .ui-slider-pip.ui-slider-pip-selected-first .ui-slider-label, 
+#scale-slider .ui-slider-pip.ui-slider-pip-selected-second .ui-slider-label {
+    background: rgba(67, 77, 90, 0.7);
+    color: #fffaf7; }
+
+
