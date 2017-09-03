@@ -86,25 +86,15 @@ $(function () {
         return [ h, s, l ];
     };
 
-    function readerOnload(_file) {
-        var image = new Image();
-        console.log(_file);
-        image.src = _file.target.result;
-        image.file = this.file;
-        image.data = this.data;
-        image.onload = imageOnload(image);
-        image.onerror = function () {
-            alert("Please select a valid image file (jpg and png are allowed)");
-        };
-    };
 
-    function imageOnload(image){
+
+    function imageOnload(){
+        var image = this;
         var canvas = document.createElement('canvas');
         canvas.width = image.width;
         canvas.height = image.height;
         var context = canvas.getContext('2d');
         context.drawImage(image, 0, 0);
-        console.log(context);
         var imageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
         var hsl = [];
         var totalH = 0;
@@ -114,7 +104,18 @@ $(function () {
             hsl.push(hslVal[0]);
         }
         var avgH = 360 * totalH/hsl.length;
-        data.files[0].hue = avgH;
+        image.data.files[0].hue = avgH;
+    };
+
+    function readerOnload(_file) {
+        var image = new Image();
+        image.file = this.file;
+        image.data = this.data;
+        image.src = _file.target.result;
+        image.onload = imageOnload;
+        image.onerror = function () {
+            alert("Please select a valid image file (jpg and png are allowed)");
+        };
     };
 
 });

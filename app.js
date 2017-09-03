@@ -4,6 +4,7 @@ const app = express();
 const fileUpload = require('express-fileupload');
 const cors = require("cors");
 const fs = require("fs");
+const fileName = './data.json';
 
 app.use(function(req, res, next) {
     console.log(`${req.method} => request for '${req.url}'`);
@@ -22,7 +23,7 @@ app.get('/search',function(req,res){
 });
 
 app.get('/search/hue/:lowerLimit/:upperLimit',function(req,res){
-  fs.readFile("./data.js", function(err, data){
+  fs.readFile("./data.json", function(err, data){
     data = JSON.parse(data);
     if (err) {
         res.send({
@@ -37,7 +38,6 @@ app.get('/search/hue/:lowerLimit/:upperLimit',function(req,res){
     }
   });
   console.log(req.params.lowerLimit, req.params.upperLimit);
-  // res.sendFile(path.join(__dirname+'/public/search.html'));
 });
 
 
@@ -55,13 +55,23 @@ app.post('/uploadImage', function(req, res) {
     return res.status(400).send('No files were uploaded.');
  
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file 
-  let sampleFile = req.files.sampleFile;
- 
+  let sampleFile = req.files["files[]"];
+
   // Use the mv() method to place the file somewhere on your server 
-  sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+  d = new Date();
+  time = d.getTime();
+  sampleFile.mv(__dirname+'/public/images/'+time+"-"+sampleFile.name, function(err) {
     if (err)
       return res.status(500).send(err);
  
+    let hue = parseInt(req.body.hue);
+    var file = require(fileName);
+    file[hue].push(time+"-"+sampleFile.name);
+    
+    fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
+      if (err) return console.log(err);
+    });
+    
     res.send('File uploaded!');
   });
 });
