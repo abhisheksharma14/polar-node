@@ -19,7 +19,7 @@
     "cors": "^2.7.1",
     "express": "^4.15.3",
     "express-fileupload": "^0.1.4",
-    "jquery": "^2.1.4"
+    "jquery": "^3.0.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
